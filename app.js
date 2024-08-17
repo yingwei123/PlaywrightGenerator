@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3103;
-const ScriptGenerator = require('./ScriptGenerator');
+const POMGenerator = require('./POMGenerator.js');
 const cors = require('cors')
 
 // Middleware to parse JSON bodies
@@ -10,13 +10,9 @@ app.use(cors());
 
 // Route to handle POST request
 app.post('/generate-script', (req, res) => {
-  const testInputs = req.body;
+  const pomData = req.body;
 
-  // Log the received array to the console
-  console.log('Received array:', testInputs);
-
-  let scriptGen = new ScriptGenerator("https://www.facebook.com/", testInputs)
-  scriptGen.downloadGeneratedScript("gen.spec.js")
+  new POMGenerator(pomData.PageURL, pomData.TestElements, pomData.PageName)
 
   // Send a response back to the client
   res.send('Array received successfully');

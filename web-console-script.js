@@ -10,12 +10,12 @@
             return (hash >>> 0).toString(16); // Convert to unsigned and then to hex
         }
 
-        // Function to show data-testid on hover
+        // Function to show blacksand-testid on hover
         function showDataTestIdOnHover(element) {
             element.addEventListener('mouseenter', () => {
                 const tooltip = document.createElement('div');
-                tooltip.className = 'data-testid-tooltip';
-                tooltip.textContent = element.getAttribute('data-testid');
+                tooltip.className = 'blacksand-testid-tooltip';
+                tooltip.textContent = element.getAttribute('blacksand-testid');
                 document.body.appendChild(tooltip);
 
                 const rect = element.getBoundingClientRect();
@@ -25,7 +25,7 @@
             });
 
             element.addEventListener('mouseleave', () => {
-                const tooltip = document.querySelector('.data-testid-tooltip');
+                const tooltip = document.querySelector('.blacksand-testid-tooltip');
                 if (tooltip) {
                     tooltip.remove();
                 }
@@ -88,7 +88,7 @@
             }
 
             const uniqueTestId = `${element.tagName.toLowerCase()}-${simpleHash(content)}-${counter++}`;
-            element.setAttribute('data-testid', uniqueTestId);
+            element.setAttribute('blacksand-testid', uniqueTestId);
             showDataTestIdOnHover(element);
 
             elementInfo.push({

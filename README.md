@@ -4,12 +4,12 @@
 - playwright
 
 ## How it works:
-The script in `web-console-script.js` will grab all tags on the page and assign each a `data-testID`.
+The script in `web-console-script.js` will grab all tags on the page and assign each a `blacksand-testid`.
 
-The `data-testID` is generated in this format:
+The `blacksand-testid` is generated in this format:
 ```${element.tagName.toLowerCase()}-${simpleHash(content)}-${counter++}```
 
-All the `data-testID`s are sent to the express server via a fetch request. The express server takes the test inputs and uses the `ScriptGenerator` class in `./ScriptGenerator.js` to generate a Playwright script. All generated tests will be in the `./tests` folder in this format:
+All the `blacksand-testid`s are sent to the express server via a fetch request. The express server takes the test inputs and uses the `ScriptGenerator` class in `./ScriptGenerator.js` to generate a Playwright script. All generated tests will be in the `./tests` folder in this format:
 ```month-day_hour-minutes-seconds_filename```
 
 
@@ -22,6 +22,6 @@ All the `data-testID`s are sent to the express server via a fetch request. The e
 6. This process will generate a Playwright test file in the `./tests` directory with the format `month-day_hour-minutes-seconds_filename`.
 
 ## Note:
-- `web-console-script.js` also adds an on-hover effect on each element to display its `data-testID` for easier unscripted testing.
-- `setup-data-testID.js` is the script run by Playwright to generate the `data-testID` before testing. It is the same as `web-console-script.js` but without the on-hover effect or most requests to generate the script.
+- `web-console-script.js` also adds an on-hover effect on each element to display its `blacksand-testid` for easier unscripted testing.
+- `setup-blacksand-testid.js` is the script run by Playwright to generate the `blacksand-testid` before testing. It is the same as `web-console-script.js` but without the on-hover effect or most requests to generate the script.
 

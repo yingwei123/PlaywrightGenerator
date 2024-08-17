@@ -13,7 +13,7 @@ let scriptContent;
 
 // Load the script content before all tests
 test.beforeAll(async () => {
-    scriptContent = await fs.readFile('setup-data-testID.js', 'utf-8');
+    scriptContent = await fs.readFile('setup-blacksand-testid.js', 'utf-8');
 });
 
 //Load the dataTestIDs into the page before testing
