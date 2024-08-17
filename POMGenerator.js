@@ -23,7 +23,7 @@ export class ${pageName} {
         const pomContent = this.testSelectors.map((testDetails)=>{
 return `
     private ${testDetails.TestName}Selector = '${testDetails.dataTestID}';
-    readonly ${testDetails.TestName};`
+    readonly ${testDetails.TestName}: Locator;`
        }).join('\n');
 
        this.fileContent += pomContent;
