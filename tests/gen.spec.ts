@@ -34,7 +34,7 @@ test.describe("test SignUp page", async()=>{
         await signUpPom.monthDOBSelect.selectOption("Aug");
         await signUpPom.dayDOBSelect.selectOption("25");
         await signUpPom.yearDOBSelect.selectOption("1999");
-        await signUpPom.maleInput.click();
+        await signUpPom.maleRadio.click();
         await signUpPom.signUpBtn.click();
         await expect(page.getByText("Please re-enter your email address.")).toBeVisible()
     })
@@ -47,7 +47,7 @@ test.describe("test SignUp page", async()=>{
         await signUpPom.monthDOBSelect.selectOption("Aug");
         await signUpPom.dayDOBSelect.selectOption("25");
         await signUpPom.yearDOBSelect.selectOption("1999");
-        await signUpPom.maleInput.click();
+        await signUpPom.maleRadio.click();
         await signUpPom.signUpBtn.click();
         await expect(page.getByText("Please re-enter your email address.")).toBeVisible()
     })
@@ -60,7 +60,7 @@ test.describe("test SignUp page", async()=>{
         await signUpPom.monthDOBSelect.selectOption("Aug");
         await signUpPom.dayDOBSelect.selectOption("25");
         await signUpPom.yearDOBSelect.selectOption("1999");
-        await signUpPom.maleInput.click();
+        await signUpPom.maleRadio.click();
         await signUpPom.signUpBtn.click();
         await expect(page.getByText("Please re-enter your email address.")).toBeVisible()
     })
@@ -73,7 +73,7 @@ test.describe("test SignUp page", async()=>{
         await signUpPom.monthDOBSelect.selectOption("Aug");
         await signUpPom.dayDOBSelect.selectOption("25");
         await signUpPom.yearDOBSelect.selectOption("1999");
-        await signUpPom.maleInput.click();
+        await signUpPom.maleRadio.click();
         await signUpPom.signUpBtn.click();
         await expect(page.getByText("Please re-enter your email address.")).toBeVisible()
     })
