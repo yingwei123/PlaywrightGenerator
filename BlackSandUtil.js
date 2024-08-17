@@ -18,6 +18,7 @@ class BlackSandUtil {
             tooltip.style.position = 'absolute';
             tooltip.style.left = `${rect.left + window.scrollX}px`;
             tooltip.style.top = `${rect.top + window.scrollY - tooltip.offsetHeight}px`;
+            tooltip.style.zIndex = 100;
         });
 
         element.addEventListener('mouseleave', () => {
@@ -57,7 +58,8 @@ class BlackSandUtil {
         });
 
         elementsToTestId.forEach(element => {
-            const uniqueTestId = `${element.tagName.toLowerCase()}-${this.simpleHash(content)}-${this.counter++}`;
+            let additionalInfo = this.getAdditionalInfo(element)
+            const uniqueTestId = `${element.tagName.toLowerCase()}-${this.simpleHash(additionalInfo.Content)}-${this.counter++}`;
             element.setAttribute('blacksand-testid', uniqueTestId);
             this.showDataTestIdOnHover(element);
         });
@@ -91,15 +93,12 @@ class BlackSandUtil {
             }
         } else if (element.tagName.toLowerCase() === 'a') {
             content += element.innerText.trim();
-            const url = new URL(element.href);
-            if (url.origin === window.location.origin) {
-                additionalInfo.href = (url.pathname === '/' ? '#' : url.pathname + url.search) || '';
-            } else {
-                additionalInfo.href = element.href;
-            }
+            additionalInfo.href = element.href;
         } else {
             content += element.innerText.trim();
         }
+
+        additionalInfo.Content = content
 
         return additionalInfo
     }
