@@ -44,6 +44,7 @@
                 element.tagName.toLowerCase() === 'textarea' ||
                 element.tagName.toLowerCase() === 'button' ||
                 element.tagName.toLowerCase() === 'a' ||
+                element.id !== null||
                 hasDirectTextContent(element)
             );
         });

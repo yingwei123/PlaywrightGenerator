@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Light DOM and Shadow DOM Example</title>
+</head>
+<body>
+    <div id="root">
+        <div>PRoblem</div>
+        <div id="shadow-host"></div>
+        <ul>
+            <li>
+                t1
+                <button>Save</button>
+            </li>
+            <li>
+                t2 
+                <button>Save</button>
+            </li>
+        </ul>
+    </div>
+
+    <button id="add-light-dom-content">Add to Light DOM</button>
+    <button id="add-shadow-dom-content">Add to Shadow DOM</button>
+
+    <script>
+        // Create a Shadow DOM on the shadow-host element
+        const shadowHost = document.getElementById('shadow-host');
+        const shadowRoot = shadowHost.attachShadow({ mode: 'open' });
+        shadowRoot.innerHTML = `<p>Initial Shadow DOM Content</p>`;
+
+        // Button to add content to the Light DOM
+        document.getElementById('add-light-dom-content').addEventListener('click', () => {
+            const newElement = document.createElement('p');
+            newElement.textContent = 'New Light DOM Content';
+            document.getElementById('root').appendChild(newElement);
+        });
+
+        // Button to add content to the Shadow DOM
+        document.getElementById('add-shadow-dom-content').addEventListener('click', () => {
+            const newElement = document.createElement('p');
+            newElement.textContent = 'New Shadow DOM Content';
+            shadowRoot.appendChild(newElement);
+        });
+    </script>
+</body>
+</html>

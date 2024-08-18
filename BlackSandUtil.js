@@ -5,6 +5,7 @@ class BlackSandUtil {
         this.pageName = "";
         this.setRightClickName();
         this.assignUniqueDataTestId();
+        this.rootObserver();
     }
 
     showDataTestIdOnHover(element) {
@@ -53,11 +54,17 @@ class BlackSandUtil {
                 element.tagName.toLowerCase() === 'button' ||
                 element.tagName.toLowerCase() === 'a' ||
                 element.tagName.toLowerCase() === 'select' ||
+                element.tagName.toLowerCase() === 'p' ||
+                element.shadowRoot ||
                 this.hasDirectTextContent(element)
             );
         });
 
         elementsToTestId.forEach(element => {
+            if(element.shadowRoot){
+                this.observeShadowRoot(element.shadowRoot);
+            }
+
             let additionalInfo = this.getAdditionalInfo(element)
             const uniqueTestId = `${element.tagName.toLowerCase()}-${this.simpleHash(additionalInfo.Content)}-${this.counter++}`;
             element.setAttribute('blacksand-testid', uniqueTestId);
@@ -148,7 +155,56 @@ class BlackSandUtil {
             }
         });
     }
+
+    observeShadowRoot(shadowRoot) {
+        console.log(shadowRoot)
+        const observer = new MutationObserver((mutationsList) => {
+            mutationsList.forEach((mutation) => {
+                console.log(mutation)
+                mutation.addedNodes.forEach((node) => {
+                    if (node.nodeType === Node.ELEMENT_NODE) {
+                        let additionalInfo = this.getAdditionalInfo(node)
+                        const uniqueTestId = `${node.tagName.toLowerCase()}-${this.simpleHash(additionalInfo.Content)}-${this.counter++}`;
+                        node.setAttribute('blacksand-testid', uniqueTestId);
+                    }
+                });
+            });
+        });
+      
+        observer.observe(shadowRoot, {
+          childList: true,
+          subtree: true,
+        });
+    }
+
+    logShadowDomElements(shadowRoot) {
+        const shadowElements = shadowRoot.children;
     
+        // Iterate over and log each element
+        for (let i = 0; i < shadowElements.length; i++) {
+            let additionalInfo = this.getAdditionalInfo(shadowElements[i])
+            const uniqueTestId = `${shadowElements[i].tagName.toLowerCase()}-${this.simpleHash(additionalInfo.Content)}-${this.counter++}`;
+            shadowElements[i].setAttribute('blacksand-testid', uniqueTestId);
+        }
+    }
+
+    rootObserver(){
+        const observer = new MutationObserver((mutations) => {
+            for (const mutation of mutations) {
+                if (mutation.type === 'childList') {
+                    mutation.addedNodes.forEach(node => {
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            let additionalInfo = this.getAdditionalInfo(node)
+                            const uniqueTestId = `${node.tagName.toLowerCase()}-${this.simpleHash(additionalInfo.Content)}-${this.counter++}`;
+                            node.setAttribute('blacksand-testid', uniqueTestId);
+                        }
+                    });
+                }
+            }
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
 }
 
 const util = new BlackSandUtil();
