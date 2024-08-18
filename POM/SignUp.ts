@@ -48,7 +48,7 @@ export class SignUp {
     readonly signUpBtn;
 
     constructor(page:Page){
-        this.page = page;
+        this.page = page;page
         this.firstNameInput = page.getByTestId(this.firstNameInputSelector);
         this.lastNameInput = page.getByTestId(this.lastNameInputSelector);
         this.emailInput = page.getByTestId(this.emailInputSelector);
