@@ -1,3 +1,24 @@
+# Blacksand Test ID Generator
+
+The **Blacksand Test ID Generator** is a tool designed to create unique `data-test ID`s, named `blacksand-testid`, to simplify the process of finding unique selectors in Page Object Models (POMs) without needing direct access to the codebase. This project aims to accelerate QA workflows by providing a quick, reliable way to identify selectors, significantly reducing time spent on test automation.
+
+## 🚧 Project Status: Work in Progress
+
+### Current Features
+- Generate unique and predictable test IDs to streamline POM creation.
+- Provide an easy-to-use solution that saves time on finding unique selectors.
+
+### Future Roadmap
+We envision expanding this project to enable **no-code QA testing**. In the future, users will be able to:
+1. **Label Elements on the Page**: Add data-test IDs and labels directly to elements without coding knowledge.
+2. **Define Custom Test Flows and Expectations**: Configure and map out test flows, specify expected behaviors, and outline interaction sequences through a visual interface.
+3. **AI-Driven Test Execution**: Using the labeled data, an AI agent will mimic the role of a QA tester, navigating through defined test flows and validating expected outcomes.
+4. **Integrated Test Management Platform**: Users will be able to run, monitor, and manage the tests they create through a connected platform, with options to review results, analyze test coverage, and improve testing strategies.
+
+These features aim to empower QA teams, making automated testing accessible and manageable without coding skills.
+
+---
+
 ## Requirements:
 - cors
 - express
